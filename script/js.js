@@ -70,7 +70,6 @@ $(document).ready(function () {
 		link.style.display = 'block';
 		link2.style.display = 'block';
 
-
 		var d = new Date();
 		var month = d.getMonth()+1;
 		var day = d.getDate();
@@ -105,7 +104,8 @@ $(document).ready(function () {
 			alert('Lisa züriiliikme nimi');
 			return null
 		} else {
-			$('#myTable tr:last').after('<tr><td> '+document.getElementById("juryName").value +'</td></tr>');
+			$('#myTable tr:last').after('<tr><td contenteditable="true" class="juryEdit"> '+document.getElementById("juryName").value +'</td></tr>');
+
 			for (var i=0; i<10; ++i ){
 				$('#myTable td:last').after('<td id="' + i + '"><select name="points">\n' +
 					'  <option value="0">Vali hinne</option>\n' +
@@ -123,9 +123,8 @@ $(document).ready(function () {
 				if (init) {
 					$('#myTable th:last').after('<th>Lisa nimi</th>');
 					$('#myTable').show();
+					$('#myTable th').attr('contenteditable','true');
 				}
-				$('#myTable th').attr('contenteditable','true');
-				$('#myTable td:first').attr('contenteditable','true');
 			}
 
 		}
