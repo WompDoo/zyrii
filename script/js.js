@@ -3,12 +3,11 @@ $(document).ready(function () {
 	window.onbeforeunload = function() {
 		return "Dude, are you sure you want to leave? Think of the kittens!";
 	}
-
 	$('#myTable').hide();
 	var init = true;
 	// click on button submit
 	$("#create").on('click', function (e) {
-
+		document.getElementById("mySidenav").style.width = "0";
 		var params = [];
 		var table = $("table tr").get();
 		var column =  $("th", table[0]).get();
@@ -67,8 +66,7 @@ $(document).ready(function () {
 		var link = document.getElementById('downloadlink');
 		var link2 = document.getElementById('fakeBox');
 		link.href = makeTextFile(JSON.stringify(params, undefined, 2));
-		link.style.display = 'block';
-		link2.style.display = 'block';
+		/*link.style.display = 'block';*/
 
 		var d = new Date();
 		var month = d.getMonth()+1;
@@ -78,6 +76,7 @@ $(document).ready(function () {
 			(month<10 ? '0' : '') + month + '/' +
 			(day<10 ? '0' : '') + day + ' ' + time;
 		$('#downloadlink').prop('download', 'ZyriiVote' + output);
+		link.click().style.display = "hidden";
 
 
 	});
@@ -98,14 +97,13 @@ $(document).ready(function () {
 		};
 
 	$("#newJury").on('click', function () {
-		var liige = $.trim($('#juryName').val());
-		console.log(liige);
+		var liige = window.prompt("Zürii liike nimi", "");
+		document.getElementById("mySidenav").style.width = "0";
 		if (liige.length <= 0) {
 			alert('Lisa züriiliikme nimi');
 			return null
 		} else {
-			$('#myTable tr:last').after('<tr><td contenteditable="true" class="juryEdit"> '+document.getElementById("juryName").value +'</td></tr>');
-
+			$('#myTable tr:last').after('<tr><td contenteditable="true" class="juryEdit"> '+ liige +'</td></tr>');
 			for (var i=0; i<10; ++i ){
 				$('#myTable td:last').after('<td id="' + i + '"><select name="points">\n' +
 					'  <option value="0">Vali hinne</option>\n' +
@@ -121,9 +119,8 @@ $(document).ready(function () {
 					'  <option value="12">12</option>\n' +
 					'</select></td>');
 				if (init) {
-					$('#myTable th:last').after('<th>Lisa nimi</th>');
+					$('#myTable th:last').after('<th contenteditable="true" >Lisa nimi</th>');
 					$('#myTable').show();
-					$('#myTable th').attr('contenteditable','true');
 				}
 			}
 

@@ -12,20 +12,26 @@
         <th id="first">Zürii</th>
     </tr>
 </table>
-<div class="float">
-    <div class="padding">
-        <button id="newJury">Uus zürii</button>
-    </div>
-    <div class="padding">
-        <button id="create">Loo JSON</button>
-        <div style="display: none" id="fakeBox" class="fakeBox"></div>
-    </div>
 
+
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a id="newJury">Uus zürii</a>
+    <a id="create">Loo JSON</a>
+    <a id="downloadlink" style="display: none">Laadi alla JSON</a>
 </div>
-<input id="juryName" type="text" placeholder="Siia läheb zürii nimi">
 
-<a id="downloadlink" style="display: none">Laadi alla JSON</a>
+<span id="openNav" onclick="openNav()">&#9776; Ava</span>
+<script>
+	document.getElementById("mySidenav").style.width = "250px";
+	function openNav() {
+		document.getElementById("mySidenav").style.width = "250px";
+	}
 
+	function closeNav() {
+		document.getElementById("mySidenav").style.width = "0";
+	}
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="script/js.js"></script>
 
